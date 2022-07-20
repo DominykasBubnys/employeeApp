@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import ReactDOM from 'react-dom';
+import TableRow from './TableRow';
 
 const Table = (props) => {
+
+    const [employees, setEmployees] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const firstMethod = async() => {
         try {
             const req = await fetch("/get/employee/list");
             
-            console.log("req: ", req)
-
             if(!req.ok) throw new Error("something bad happens");
 
             const data = await req.json();
-
-            console.log("data: ", data)
+            setEmployees(data);
+            setIsLoading(false);
 
 
         } catch (error) {
@@ -23,35 +25,37 @@ const Table = (props) => {
 
     return (
         <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">Hello from table</div>
+            <button onClick={firstMethod}>Load data</button>
 
-                        <table className='table table-hover'>
-                            <thead>
-                                <tr>
-                                    <th scope='col' width="1000px">#</th>
-                                    <th scope='col' width="1000px">Name</th>
-                                    <th scope='col' width="1000px">Salary</th>
-                                    <th scope='col' width="1000px">Actions</th>
-                                </tr>
-                            </thead>
+            { 
+                isLoading 
+                ? 
+                <div>Loading...</div> 
+                :
+                <div className="row justify-content-center">
+                    <div className="col-md-8">
+                        <div className="card">
+                            <div className="card-header">Hello from table</div>
 
-                            <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <th>Mark</th>
-                                    <th>Otto</th>
-                                    <th>@mdo</th>
-                                </tr>
-                            </tbody>
-                        </table>
+                            <table className='table table-hover'>
+                                <thead>
+                                    <tr>
+                                        <th scope='col' width="1000px">#</th>
+                                        <th scope='col' width="1000px">Name</th>
+                                        <th scope='col' width="1000px">Salary</th>
+                                        <th scope='col' width="1000px">Actions</th>
+                                    </tr>
+                                </thead>
 
-                        <button onClick={firstMethod}>Submitas</button>
+                                <tbody>
+                                    {employees.map( empl => <TableRow key={empl.id} data={empl} />)}
+                                </tbody>
+                            </table>
+
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
     );
 
