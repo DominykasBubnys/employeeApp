@@ -22,4 +22,22 @@ class EmployeeController extends Controller
             Log::error($err);
         }
     }
+
+    public function getEmployeeDetails(Request $request){
+        
+        try {
+            $employeeDetails = Employee::findOrFail($request->get("employeeId"));
+            return response()->json($employeeDetails);
+
+        } catch (Exception $err) {
+            Log::error($err);
+        }
+
+
+    }
+
+    public function Kazkas(){
+        echo "labas";
+        return 5;
+    }
 }
