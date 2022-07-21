@@ -36,8 +36,13 @@ class EmployeeController extends Controller
 
     }
 
-    public function Kazkas(){
-        echo "labas";
-        return 5;
+    public function updateEmployeeData(Request $request){
+        try {
+            //code...
+
+            
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }

@@ -1,23 +1,35 @@
 import React, { useState } from 'react'
-
+import axios from "axios"
 const UpdateModal = (props) => {
     
-    const [updatedName, setUpdatedName] = useState();
-    const [updatedSalary, setUpdatedSalary] = useState();
+    const [updatedName, setUpdatedName] = useState(0);
+    const [updatedSalary, setUpdatedSalary] = useState(0);
 
     const onSubmitData = (e) => {
         e.preventDefault();
-        console.log("submitas cia yra senelyzai !");
-        console.log("values: ", updatedName, " | ", updatedSalary);
+        const newName = updatedName || props.employeeData.employee_name;
+        const newSalary = updatedSalary || props.employeeData.salary;
+
+        console.log("values: [", newName, " | ", newSalary, "]");
+
+        axios.post('/update/employee/data', {
+            employeeId: props.modalId,
+            employeeName: newName,
+            employeeSalary: newSalary,
+        })
+        .then(response => {
+            location.reload();
+        })
+        .catch(err => console.log("error in updateModal: ", err));
     }
 
     const changeNameHandler = (e) => {
-        // console.log("new name text: ", e.target.value);
+        console.log("new name text: ", e.target.value);
         setUpdatedName(e.target.value);
     }
 
     const changeSalaryHandler = (e) => {
-        // console.log("new salary text: ", e.target);
+        console.log("new salary text: ", e.target);
         setUpdatedSalary(e.target.value);
     }
 
@@ -38,7 +50,7 @@ const UpdateModal = (props) => {
                             <input 
                                 type="text" 
                                 id="employeeName" 
-                                value={updatedName || props.employeeData.employee_name} 
+                                value={updatedName===0 ? props.employeeData.employee_name : updatedName} 
                                 onChange={changeNameHandler}
                             />
                         </div>
@@ -47,7 +59,7 @@ const UpdateModal = (props) => {
                             <input 
                                 type="text" 
                                 id="employeeSalary" 
-                                value={updatedSalary || props.employeeData.salary} 
+                                value={updatedSalary===0 ? props.employeeData.salary : updatedSalary} 
                                 onChange={changeSalaryHandler}
                             />
                         </div>
