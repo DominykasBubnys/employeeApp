@@ -5448,6 +5448,97 @@ var App = function App(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/employeeList/Modals/DeteleModal.jsx":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/employeeList/Modals/DeteleModal.jsx ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+var DeteleModal = function DeteleModal(props) {
+  var onDeleteData = function onDeleteData(employee) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('/delete/employee/data/' + employee).then(function () {
+      return setTimeout(function () {
+        location.reload();
+      }, 2500);
+    })["catch"](function (err) {
+      return console.log("error in DeleteModal: ", err);
+    });
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "modal fade",
+    id: "deleteModal" + props.modalId,
+    tabIndex: "-1",
+    "aria-labelledby": "exampleModalLabel",
+    "aria-hidden": "true",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "modal-dialog",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "modal-content",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "modal-header",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+            className: "modal-title",
+            id: "exampleModalLabel",
+            children: props.modalName || /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+              children: "Delete employee"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            type: "button",
+            className: "btn-close",
+            "data-bs-dismiss": "modal",
+            "aria-label": "Close"
+          })]
+        }), !props.isLoading && props.employeeData ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "modal-body",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+            children: "Deleting... "
+          })
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "modal-body",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+            children: "Loading... "
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "modal-footer",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            type: "button",
+            className: "btn btn-secondary",
+            "data-bs-dismiss": "modal",
+            children: "Close"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "modal-footer",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "submit",
+              className: "btn btn-info",
+              value: "Update",
+              onClick: onDeleteData
+            })
+          })]
+        })]
+      })
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DeteleModal);
+
+/***/ }),
+
 /***/ "./resources/js/components/employeeList/Modals/UpdateModal.jsx":
 /*!*********************************************************************!*\
   !*** ./resources/js/components/employeeList/Modals/UpdateModal.jsx ***!
@@ -5838,7 +5929,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Modals_ViewModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Modals/ViewModal */ "./resources/js/components/employeeList/Modals/ViewModal.jsx");
 /* harmony import */ var _Modals_UpdateModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Modals/UpdateModal */ "./resources/js/components/employeeList/Modals/UpdateModal.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Modals_DeteleModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Modals/DeteleModal */ "./resources/js/components/employeeList/Modals/DeteleModal.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5850,6 +5942,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -5880,10 +5973,10 @@ var TableActionButtons = function TableActionButtons(props) {
     });
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "btn-group",
     role: "group",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
       type: "button",
       className: "btn btn-primary",
       "data-bs-toggle": "modal",
@@ -5892,12 +5985,12 @@ var TableActionButtons = function TableActionButtons(props) {
         return getEmployeeDetails(props.eachRowId);
       },
       children: "View"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Modals_ViewModal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Modals_ViewModal__WEBPACK_IMPORTED_MODULE_2__["default"], {
       modalName: "Details",
       modalId: props.eachRowId,
       isLoading: isLoading,
       employeeData: details
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
       type: "button",
       className: "btn btn-info",
       "data-bs-toggle": "modal",
@@ -5906,15 +5999,21 @@ var TableActionButtons = function TableActionButtons(props) {
         return getEmployeeDetails(props.eachRowId);
       },
       children: "Update"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Modals_UpdateModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Modals_UpdateModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
       modalName: "Update",
       modalId: props.eachRowId,
       isLoading: isLoading,
       employeeData: details
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
       type: "button",
       className: "btn btn-danger",
+      "data-bs-toggle": "modal",
+      "data-bs-target": "#deleteModal" + props.eachRowId,
       children: "Delete"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Modals_DeteleModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      modalId: props.eachRowId,
+      isLoading: isLoading,
+      employeeData: details
     })]
   });
 };

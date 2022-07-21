@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import ViewModal from "./Modals/ViewModal";
 import UpdateModal from './Modals/UpdateModal';
+import DeteleModal from './Modals/DeteleModal';
+
 
 const TableActionButtons = (props) => {
 
@@ -50,9 +52,12 @@ const TableActionButtons = (props) => {
         <button 
             type='button' 
             className='btn btn-danger'
+            data-bs-toggle="modal" 
+            data-bs-target={"#deleteModal"+props.eachRowId}
         > 
             Delete
         </button>
+        <DeteleModal modalId={props.eachRowId} isLoading={isLoading} employeeData={details} />
 
     </div>
   )

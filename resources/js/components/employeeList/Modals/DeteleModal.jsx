@@ -4,12 +4,17 @@ import axios from "axios"
 
 const DeteleModal = (props) => {
 
-    const onSubmitData = (e) => {
-        e.preventDefault();
+    const onDeleteData = (employee) => {
+        
+        axios.delete('/delete/employee/data/'+employee)
+        .then(() => setTimeout(() => {
+            location.reload();
+        }, 2500))
+        .catch(err => console.log("error in DeleteModal: ", err));
     }
 
   return (
-    <div className="modal fade" id={"updateModal"+props.modalId} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal fade" id={"deleteModal"+props.modalId} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
             <div className="modal-content">
             <div className="modal-header">
@@ -20,7 +25,9 @@ const DeteleModal = (props) => {
                 !props.isLoading && props.employeeData ? 
                 <div className="modal-body">
                     
-                    <h1>Are you sure, You want to delete this employee data?</h1>
+                    {/* <h1>Are you sure, You want to delete this employee data?</h1> */}
+                    <h1>Deleting... </h1>
+
 
                 </div>
                 :
@@ -36,7 +43,7 @@ const DeteleModal = (props) => {
                         type="submit"
                         className='btn btn-info'
                         value="Update"
-                        onClick={onSubmitData}
+                        onClick={onDeleteData}
                     />
                 </div>
             </div>
