@@ -1,7 +1,6 @@
 import React from 'react'
 
 const ViewModal = (props) => {
-    console.log("loading: ", props)
   return (
     <div className="modal fade" id={"viewModal"+props.modalId} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">

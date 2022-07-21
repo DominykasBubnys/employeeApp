@@ -39,10 +39,22 @@ class EmployeeController extends Controller
     public function updateEmployeeData(Request $request){
         try {
             //code...
+            $employeeId = $request->get("employeeId");
+            $employeeName = $request->get("employeeName");
+            $employeeSalary = $request->get("employeeSalary");
 
-            
-        } catch (\Throwable $th) {
-            //throw $th;
+            Employee::where('id', $employeeId)->update([
+                'employee_name' => $employeeName,
+                'salary' => $employeeSalary
+            ]);
+
+            return response()->json([
+                'employee_name' => $employeeName,
+                'salary' => $employeeSalary,
+            ]);
+
+        } catch (Exception $err) {
+            Log::error($err);
         }
     }
 }

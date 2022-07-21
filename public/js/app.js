@@ -5508,12 +5508,10 @@ var UpdateModal = function UpdateModal(props) {
   };
 
   var changeNameHandler = function changeNameHandler(e) {
-    console.log("new name text: ", e.target.value);
     setUpdatedName(e.target.value);
   };
 
   var changeSalaryHandler = function changeSalaryHandler(e) {
-    console.log("new salary text: ", e.target);
     setUpdatedSalary(e.target.value);
   };
 
@@ -5612,7 +5610,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ViewModal = function ViewModal(props) {
-  console.log("loading: ", props);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "modal fade",
     id: "viewModal" + props.modalId,

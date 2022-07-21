@@ -24,12 +24,10 @@ const UpdateModal = (props) => {
     }
 
     const changeNameHandler = (e) => {
-        console.log("new name text: ", e.target.value);
         setUpdatedName(e.target.value);
     }
 
     const changeSalaryHandler = (e) => {
-        console.log("new salary text: ", e.target);
         setUpdatedSalary(e.target.value);
     }
 
